@@ -1,12 +1,22 @@
-#![forbid(unsafe_code)]
-#![cfg_attr(not(debug_assertions), deny(warnings))] // Forbid warnings in release builds
-#![warn(clippy::all, rust_2018_idioms)]
-#![cfg_attr(not(debug_assertions), windows_subsystem = "windows")] //Hide console window in release builds on Windows, this blocks stdout.
+// Name: Neptune
+// Author: Parker Lamb
+// Date: 4.14.22
+// Description: Lightweight and speedy image-viewing application. 
 
-// When compiling natively:
-#[cfg(not(target_arch = "wasm32"))]
+mod functions;
+mod input;
+mod gui;
+
 fn main() {
-    let app = eframe_template::TemplateApp::default();
-    let native_options = eframe::NativeOptions::default();
-    eframe::run_native(Box::new(app), native_options);
+    // 0. Base parameters
+    let supported_formats = vec!["jpg","JPG","jpeg","JPEG","png","PNG"];
+
+    // 1. Get application CLI arguments
+    let arguments = input::get_args();
+
+    // 2. Create application instance
+    let dir = functions::get_dir(&arguments);
+    
+    // 3. Open GTK window, and hand off management to it
+    // ** Open image data in window if provided
 }

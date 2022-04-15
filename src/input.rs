@@ -1,5 +1,4 @@
 // Description: functions to deal with file inputs and CLI arguments.
-extern crate clap;
 
 use clap::{App, Arg, ArgMatches};
 
