@@ -18,7 +18,7 @@ fn main() {
     let files;
     let index;
     match dir {
-        Some(d) => {
+        Some(ref d) => {
             files = functions::get_files(&d);
             match files {
                 Some(ref f) => index = functions::get_index(&arguments, &f),
@@ -29,7 +29,7 @@ fn main() {
     }
 
     match files {
-        Some(f) => {
+        Some(ref f) => {
             match index {
                 Some(i) => println!("{:?}",f[i]),
                 None => println!("Directory specified")
@@ -38,6 +38,10 @@ fn main() {
         None => println!("Nothing specified")
     }
     
-    // 3. Open GTK window, and hand off management to it
-    // ** Open image data in window if provided
+    // 4. Set up GUI application
+    let app = gui::NeptuneApp::setup(dir,files,index);
+    let native_options = eframe::NativeOptions::default();
+
+    // 5. Hand off management of the app to egui
+    eframe::run_native(Box::new(app), native_options);
 }

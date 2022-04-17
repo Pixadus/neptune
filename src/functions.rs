@@ -56,7 +56,7 @@ pub fn get_files(dir: &PathBuf) -> Option<Vec<PathBuf>> {
 }
 
 
-// Return index of file within list of files, if specified
+// Return index of path within list of paths, if specified
 pub fn get_index(arguments: &ArgMatches, files: &Vec<PathBuf>) -> Option<usize> {
     // Get the path string from arguments
     let arg = arguments.value_of("INPUT");

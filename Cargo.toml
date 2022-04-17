@@ -12,3 +12,4 @@ edition = "2021"
 [dependencies]
 clap = "2.33.3"
 eframe = "0.17.0"
+rfd = "0.8.2"
